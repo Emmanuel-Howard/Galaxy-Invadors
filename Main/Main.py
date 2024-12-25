@@ -17,7 +17,7 @@ STAR_HEIGHT = 60
 STAR_VEL = 3
 
 star_surface = pygame.Surface((STAR_WIDTH, STAR_HEIGHT))
-star_surface.fill("white")  # Match the star's color
+star_surface.fill("white")
 
 BG = pygame.image.load("maxresdefault.jpg")
 BG = pygame.transform.scale(BG, (WIDTH, HEIGHT))
@@ -29,6 +29,7 @@ STAR_IMAGES = [
     pygame.transform.scale(pygame.image.load("turned61 (2).png"), (STAR_WIDTH, STAR_HEIGHT)),
     pygame.transform.scale(pygame.image.load("turned61 (3).png"), (STAR_WIDTH, STAR_HEIGHT))
 ]
+
 STAR_MASKS = [pygame.mask.from_surface(star) for star in STAR_IMAGES]
 
 PLAYER_MASK = pygame.mask.from_surface(PLAYER_IMAGE)
@@ -37,6 +38,39 @@ FONT = pygame.font.SysFont("comicsans", 25)
 
 pygame.mixer.music.load("cosmos-space-game-action-shooter-astronauts-scifi-aliens-142978.mp3")
 pygame.mixer.music.play(-1)
+
+#Menu function
+def menu():
+    menu_bg = pygame.image.load("maxresdefault.jpg")
+    menu_bg = pygame.transform.scale(menu_bg, (WIDTH, HEIGHT))
+
+    title_font = pygame.font.SysFont("comicsans", 60)
+    options_font = pygame.font.SysFont("comicsans", 60)
+
+    run = True
+    while run:
+        WIN.blit(menu_bg, (0, 0))
+
+        title_text = title_font.render("Galaxy Invaders", 1, "white")
+        start_text = options_font.render("Press SPACE to Start", 1, "white")
+        quit_text = options_font.render("Press Q to Quit", 1, "white")
+
+        WIN.blit(title_text, (WIDTH / 2 - title_text.get_width()/2, 150))
+        WIN.blit(start_text, (WIDTH / 2 - start_text.get_width() / 2, 300))
+        WIN.blit(quit_text, (WIDTH / 2 - quit_text.get_width()/2, 400))
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    run = False
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    exit()
 
 def draw(player, elapsed_time, stars):
     WIN.blit(BG,(0,0))
@@ -128,6 +162,7 @@ def main():
     pygame.quit()
 
 if __name__ == "__main__":
+    menu()
     main()
 
 
