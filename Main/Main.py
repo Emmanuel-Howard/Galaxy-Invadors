@@ -1,3 +1,5 @@
+#A galaxy game with a loading screen and end screen
+
 import pygame
 import time
 import random
@@ -72,6 +74,7 @@ def menu():
                     pygame.quit()
                     exit()
 
+#Draw function that draws onto window
 def draw(player, elapsed_time, stars):
     WIN.blit(BG,(0,0))
 
@@ -85,6 +88,7 @@ def draw(player, elapsed_time, stars):
 
     pygame.display.update()
 
+#Main game loop
 def main():
     run = True
 
@@ -161,6 +165,7 @@ def main():
 
     pygame.quit()
 
+#Runs game if module = main
 if __name__ == "__main__":
     menu()
     main()
