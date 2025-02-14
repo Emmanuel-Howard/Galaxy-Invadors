@@ -146,14 +146,16 @@ def main():
 
         if hit:
             pygame.mixer.music.stop()
-            pygame.mixer.music.load("game-over-arcade-6435.mp3")
-            pygame.mixer.music.play(1)
+            if hit:
+                pygame.mixer.music.stop()
+                pygame.mixer.music.load("game-over-arcade-6435.mp3")
+                pygame.mixer.music.play(1)
 
-            while pygame.mixer.music.get_busy():
-                pygame.time.Clock().tick(10)
+                while pygame.mixer.music.get_busy():
+                    pygame.time.Clock().tick(10)
 
-            pygame.mixer.music.load("game-over-160612.mp3")
-            pygame.mixer.music.play(1)
+                pygame.mixer.music.load("game-over-160612.mp3")
+                pygame.mixer.music.play(1)
 
             lost_text = FONT.render("GAME OVER!", 1, "white")
             WIN.blit(lost_text, (WIDTH/2 - lost_text.get_width()/2, HEIGHT/2 - lost_text.get_height()/2))
